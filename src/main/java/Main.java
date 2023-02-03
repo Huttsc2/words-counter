@@ -1,33 +1,15 @@
+import java.util.Scanner;
 class Main{
     public static void main(String[] args) {
-        WritingMaterials wm = new WritingMaterials("Pen", "Red", 145, 15.6, true);
-        wm.display();
-
-        Pen p = new Pen();
-        p.setName("Parker");
-        p.setCountColor(2);
-        p.setAuto(false);
-        p.display();
-        System.out.println(p.getCountColor());
-        System.out.println(p.isAuto());
-        p.writeMyName();
-
-        Ruler r = new Ruler();
-        r.setName("Ruler");
-        r.setLength(25);
-        r.setWood(true);
-        r.display();
-        System.out.println(r.getLength());
-        System.out.println(r.isWood());
-        r.measure();
-
-        Divider d = new Divider();
-        d.setName("Divider");
-        d.setDividerType("with pen");
-        d.setMetal(true);
-        d.display();
-        System.out.println(d.getDividerType());
-        System.out.println(d.isMetal());
-        d.drawCircle();
+        Scanner sc = new Scanner(System.in);
+        Area area = new Area(10, 20);
+        Dot dot = new Dot(5, 10);
+        Dot point = new Dot(3, 12);
+        Draw draw = new Draw(area.getHeight(), area.getWidth(), dot.getStartX(), dot.getStartY(), point.getStartX(), point.getStartY());
+        draw.draw(dot.getStartX(), dot.getStartY());
+        while (dot.getStartX() != point.getStartX() || dot.getStartY() != point.getStartY()) {
+            dot.move(sc.next());
+            draw.draw(dot.getStartX(), dot.getStartY());
+        }
     }
 }
