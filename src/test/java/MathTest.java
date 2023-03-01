@@ -9,7 +9,7 @@ class MathTest {
 
     @Test
     void sum() {
-        Math math = new Math();
+        MyMath math = new MyMath();
         assertEquals(4, math.sum(2, 2));
         System.out.println("sum4");
     }
@@ -26,7 +26,7 @@ class MathTest {
 
     @Test
     void sum2() {
-        Math math = new Math();
+        MyMath math = new MyMath();
         Assertions.assertEquals(5, math.sum(2, 3));
         System.out.println("sum5");
     }
@@ -45,7 +45,7 @@ class MathTest {
     @DisplayName("Add operation test")
     @RepeatedTest(value = 5, name = "{displayName} - repetition {currentRepetition} of {totalRepetitions}")
     void sum3() {
-        Math math = new Math();
+        MyMath math = new MyMath();
         assertEquals(7, math.sum(3, 4));
         System.out.println("sum7");
     }
