@@ -1,14 +1,16 @@
 package Counter;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+    public static void main(String[] args) throws FileNotFoundException {
         WordCounter wordCounter = new WordCounter();
-        System.out.println("Enter the text");
-        wordCounter.setText(sc.nextLine());
-        System.out.println(wordCounter.getText());
-        wordCounter.numbersOfWords();
+        Scanner scanner = new Scanner(new File("text.txt"));
+        String text = scanner.useDelimiter("\\A").next();
+        wordCounter.setText(text);
+        wordCounter.display();
+        //todo count unique words
     }
 }
