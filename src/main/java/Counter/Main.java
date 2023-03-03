@@ -11,6 +11,6 @@ public class Main {
         String text = scanner.useDelimiter("\\A").next();
         wordCounter.setText(text);
         wordCounter.display();
-        //todo count unique words
+        //todo output words and their numbers
     }
 }
