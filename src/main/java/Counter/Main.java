@@ -11,6 +11,6 @@ public class Main {
         String text = scanner.useDelimiter("\\A").next();
         wordCounter.setText(text);
         wordCounter.display();
-        //todo output words and their numbers
+        //todo output information to .txt
     }
 }
