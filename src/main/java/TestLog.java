@@ -1,10 +1,13 @@
-package Counter;
+import Counter.WordCounter;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
-public class Main {
-    public static void main(String[] args) throws FileNotFoundException {
+public class TestLog {
+    public static void main(String[] args) throws IOException {
         WordCounter wordCounter = new WordCounter();
         Scanner scanner = new Scanner(new File("text.txt"));
         String text = scanner.useDelimiter("\\A").next();
@@ -22,8 +25,5 @@ public class Main {
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
-        //todo sort words in AnyUnique
-        //todo choose file
-        //todo separate file to new method
     }
 }

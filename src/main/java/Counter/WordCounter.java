@@ -17,23 +17,23 @@ public class WordCounter {
         this.text = text;
     }
 
-    public void numbersOfWords() {
+    public String numbersOfWords() {
         String[] words = formatText();
-        System.out.println("This text has " + words.length + " words");
+        return Integer.toString(words.length);
     }
-    public void numbersOfUniqueWords() {
+    public String numbersOfUniqueWords() {
         String[] words = formatText();
         HashSet<String> uniqueWords = new HashSet<>();
         Collections.addAll(uniqueWords, words);
-        System.out.println("This text has " + uniqueWords.size() + " unique words");
-
+        return Integer.toString(uniqueWords.size());
     }
     public String[] formatText() {
         String stringToFormat = text.toLowerCase().replaceAll("\\W", " ").replaceAll("\\s{2,}", " ");
         return stringToFormat.split(" ");
     }
-    public void numbersOfAnyUniqueWords() {
+    public String numbersOfAnyUniqueWords() {
         String[] words = formatText();
+        StringBuilder mapAsString = new StringBuilder();
         Map<String, Integer> uniqueWordsNumbers = new HashMap<>();
         for (String value : words) {
             if (!uniqueWordsNumbers.containsKey(value)) {
@@ -43,14 +43,22 @@ public class WordCounter {
             }
         }
         for (String key: uniqueWordsNumbers.keySet()) {
-            System.out.println(key + ": " + uniqueWordsNumbers.get(key));
+            mapAsString.append(key).append(" ").append(uniqueWordsNumbers.get(key)).append("\n");
         }
+        return mapAsString.toString();
     }
     public void display() {
         System.out.println(getText());
         System.out.println();
-        numbersOfWords();
-        numbersOfUniqueWords();
-        numbersOfAnyUniqueWords();
+        System.out.println("This text has " + numbersOfWords() + " words");
+        System.out.println("This text has " + numbersOfUniqueWords() + " unique words");
+        System.out.println(numbersOfAnyUniqueWords());
+    }
+    public String displayToString() {
+        String display;
+        display = "This text has " + numbersOfWords() + " words\n";
+        display += "This text has " + numbersOfUniqueWords() + " unique words\n";
+        display += numbersOfAnyUniqueWords();
+        return display;
     }
 }
