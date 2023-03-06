@@ -26,5 +26,6 @@ public class Main {
         //todo sort words in AnyUnique by alphabet
         //todo choose file
         //todo separate file to new method
+        //todo StringBuilder(?)
     }
 }
