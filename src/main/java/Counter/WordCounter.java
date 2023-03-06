@@ -1,9 +1,6 @@
 package Counter;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
+import java.util.*;
 
 public class WordCounter {
 
@@ -42,7 +39,19 @@ public class WordCounter {
                 uniqueWordsNumbers.replace(value, uniqueWordsNumbers.get(value) + 1);
             }
         }
-        for (String key: uniqueWordsNumbers.keySet()) {
+        ArrayList<String> sorted = new ArrayList<>(uniqueWordsNumbers.keySet());
+        boolean is_sort = false;
+        while (!is_sort) {
+            is_sort = true;
+            for (int i = 1; i < sorted.size(); i++) {
+                if (uniqueWordsNumbers.get(sorted.get(i-1)) < uniqueWordsNumbers.get(sorted.get(i))) {
+                    sorted.add(i-1, sorted.remove(i));
+                    is_sort = false;
+                    break;
+                }
+            }
+        }
+        for (String key: sorted) {
             mapAsString.append(key).append(" ").append(uniqueWordsNumbers.get(key)).append("\n");
         }
         return mapAsString.toString();

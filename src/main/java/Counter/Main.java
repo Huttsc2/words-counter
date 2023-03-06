@@ -22,7 +22,8 @@ public class Main {
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
-        //todo sort words in AnyUnique
+        //wordCounter.display();
+        //todo sort words in AnyUnique by alphabet
         //todo choose file
         //todo separate file to new method
     }
