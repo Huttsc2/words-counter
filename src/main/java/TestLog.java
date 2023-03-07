@@ -8,10 +8,9 @@ import java.util.Scanner;
 
 public class TestLog {
     public static void main(String[] args) throws IOException {
-        WordCounter wordCounter = new WordCounter();
         Scanner scanner = new Scanner(new File("text.txt"));
         String text = scanner.useDelimiter("\\A").next();
-        wordCounter.setText(text);
+        WordCounter wordCounter = new WordCounter(text);
         try (FileWriter log = new FileWriter("log.txt")) {
             log.write(wordCounter.displayToString());
         } catch (IOException ex) {

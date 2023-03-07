@@ -5,10 +5,9 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws FileNotFoundException {
-        WordCounter wordCounter = new WordCounter();
-        Scanner scanner = new Scanner(new File("text.txt"));
+        Scanner scanner = new Scanner(new File("FightClub.txt"));
         String text = scanner.useDelimiter("\\A").next();
-        wordCounter.setText(text);
+        WordCounter wordCounter = new WordCounter(text);
         try (FileWriter log = new FileWriter("log.txt")) {
             log.write(wordCounter.displayToString());
         } catch (IOException ex) {
@@ -22,10 +21,9 @@ public class Main {
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
-        //wordCounter.display();
         //todo sort words in AnyUnique by alphabet
+        //todo choose type of sort
         //todo choose file
         //todo separate file to new method
-        //todo StringBuilder(?)
     }
 }
