@@ -9,11 +9,6 @@ public class WordCounter {
     private final String numbersOfWords;
     private final String numbersOfUniqueWords;
     private final Map<String, Integer> numbersOfAnyUniqueWords;
-    private ArrayList<String> mapKeysToArray;
-
-    public void setMapKeysToArray(ArrayList<String> mapKeysToArray) {
-        this.mapKeysToArray = mapKeysToArray;
-    }
 
     public WordCounter(String text) {
         this.text = text;
@@ -21,7 +16,6 @@ public class WordCounter {
         this.numbersOfWords = numbersOfWords();
         this.numbersOfUniqueWords = numbersOfUniqueWords();
         this.numbersOfAnyUniqueWords = numbersOfAnyUniqueWords();
-        this.mapKeysToArray = mapKeysToArray();
     }
 
     public String[] formatText() {
@@ -51,46 +45,28 @@ public class WordCounter {
         return uniqueWordsNumbers;
     }
 
-    public ArrayList<String> mapKeysToArray() {
-        return new ArrayList<>(numbersOfAnyUniqueWords.keySet());
-    }
-
-    public void sortByNumbers() {
-        ArrayList<String> sorted = mapKeysToArray;
-        boolean is_sort = false;
-        while (!is_sort) {
-            is_sort = true;
-            for (int i = 1; i < sorted.size(); i++) {
-                if (numbersOfAnyUniqueWords.get(sorted.get(i-1)) < numbersOfAnyUniqueWords.get(sorted.get(i))) {
-                    sorted.add(i-1, sorted.remove(i));
-                    is_sort = false;
-                    break;
-                }
-            }
-        }
-        setMapKeysToArray(sorted);
+    public String sortStream() {
+        StringBuilder mapAsString = new StringBuilder();
+        Map<String, Integer> sorted = new HashMap<>(numbersOfAnyUniqueWords);
+        sorted.entrySet().stream()
+                .sorted(Map.Entry.<String, Integer>comparingByValue().reversed())
+                .forEach(v->mapAsString.append(v).append("\n"));
+        return mapAsString.toString();
     }
 
     public String mapToString() {
         StringBuilder mapAsString = new StringBuilder();
-        for (String key: mapKeysToArray) {
+        for (String key: numbersOfAnyUniqueWords.keySet()) {
             mapAsString.append(key).append(" ").append(numbersOfAnyUniqueWords.get(key)).append("\n");
         }
         return mapAsString.toString();
-    }
-
-    public void display() {
-        System.out.println("This text has " + numbersOfWords + " words");
-        System.out.println("This text has " + numbersOfUniqueWords + " unique words");
-        System.out.println(mapToString());
     }
 
     public String displayToString() {
         String display;
         display = "This text has " + numbersOfWords + " words\n";
         display += "This text has " + numbersOfUniqueWords + " unique words\n\n";
-        sortByNumbers();
-        display += mapToString();
+        display += sortStream();
         return display;
     }
 }
