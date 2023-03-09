@@ -9,6 +9,8 @@ public class WordCounter {
     private final String numbersOfWords;
     private final String numbersOfUniqueWords;
     private final Map<String, Integer> numbersOfAnyUniqueWords;
+    private final String sortedByKey;
+    private final String sortedByValue;
 
     public WordCounter(String text) {
         this.text = text;
@@ -16,10 +18,12 @@ public class WordCounter {
         this.numbersOfWords = numbersOfWords();
         this.numbersOfUniqueWords = numbersOfUniqueWords();
         this.numbersOfAnyUniqueWords = numbersOfAnyUniqueWords();
+        this.sortedByValue = sortByValue();
+        this.sortedByKey = sortByKey();
     }
 
     public String[] formatText() {
-        String stringToFormat = text.toLowerCase().replaceAll("\\W", " ").replaceAll("\\s{2,}", " ");
+        String stringToFormat = text.toLowerCase().replaceAll("[\\W\\d]", " ").replaceAll("\\s{2,}", " ");
         return stringToFormat.split(" ");
     }
 
@@ -45,12 +49,20 @@ public class WordCounter {
         return uniqueWordsNumbers;
     }
 
-    public String sortStream() {
+    public String sortByValue() {
         StringBuilder mapAsString = new StringBuilder();
         Map<String, Integer> sorted = new HashMap<>(numbersOfAnyUniqueWords);
         sorted.entrySet().stream()
                 .sorted(Map.Entry.<String, Integer>comparingByValue().reversed())
                 .forEach(v->mapAsString.append(v).append("\n"));
+        return mapAsString.toString();
+    }
+    public String sortByKey() {
+        StringBuilder mapAsString = new StringBuilder();
+        Map<String, Integer> sorted = new HashMap<>(numbersOfAnyUniqueWords);
+        sorted.entrySet().stream()
+                .sorted(Map.Entry.comparingByKey())
+                .forEach(k->mapAsString.append(k).append("\n"));
         return mapAsString.toString();
     }
 
@@ -66,7 +78,8 @@ public class WordCounter {
         String display;
         display = "This text has " + numbersOfWords + " words\n";
         display += "This text has " + numbersOfUniqueWords + " unique words\n\n";
-        display += sortStream();
+        display += sortedByValue;
+        //display += sortedByKey;
         return display;
     }
 }
