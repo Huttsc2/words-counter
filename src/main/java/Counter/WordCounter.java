@@ -66,20 +66,21 @@ public class WordCounter {
         return mapAsString.toString();
     }
 
-    public String mapToString() {
-        StringBuilder mapAsString = new StringBuilder();
-        for (String key: numbersOfAnyUniqueWords.keySet()) {
-            mapAsString.append(key).append(" ").append(numbersOfAnyUniqueWords.get(key)).append("\n");
-        }
-        return mapAsString.toString();
-    }
-
     public String displayToString() {
+        Scanner sc = new Scanner(System.in);
         String display;
         display = "This text has " + numbersOfWords + " words\n";
         display += "This text has " + numbersOfUniqueWords + " unique words\n\n";
-        display += sortedByValue;
-        //display += sortedByKey;
+        System.out.println("\nChoose type of sort\n1: By alphabet\n2: By number");
+        int x = sc.nextInt();
+        switch (x) {
+            case 1:
+                display += sortedByKey;
+                break;
+            case 2:
+                display += sortedByValue;
+                break;
+        }
         return display;
     }
 }

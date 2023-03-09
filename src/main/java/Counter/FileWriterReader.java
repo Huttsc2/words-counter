@@ -9,10 +9,26 @@ public class FileWriterReader {
     String fileText;
 
     public FileWriterReader() throws FileNotFoundException {
-        Scanner sc = new Scanner(System.in);
-        this.toRead = sc.nextLine();
+        this.toRead = fileURL();
         this.toWrite = "log.txt";
         this.fileText = fileToString();
+    }
+    public String fileURL() {
+        String position;
+        System.out.println("\nChoose file:\n1: text.txt\n2: FightCLub.txt");
+        Scanner sc = new Scanner(System.in);
+        int x = sc.nextInt();
+        switch (x) {
+            case 1:
+                position = "text.txt";
+                break;
+            case 2:
+                position = "FightClub.txt";
+                break;
+            default:
+                position = null;
+        }
+        return position;
     }
     public String fileToString() throws FileNotFoundException {
         Scanner sc = new Scanner(new File(toRead));
