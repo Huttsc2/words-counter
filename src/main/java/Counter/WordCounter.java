@@ -23,7 +23,7 @@ public class WordCounter {
     }
 
     public String[] formatText() {
-        String stringToFormat = text.toLowerCase().replaceAll("[\\W\\d]", " ").replaceAll("\\s{2,}", " ");
+        String stringToFormat = text.toLowerCase().replaceAll("[^a-zA-ZА-Яа-я]", " ").replaceAll("\\s{2,}", " ");
         return stringToFormat.split(" ");
     }
 
@@ -54,15 +54,16 @@ public class WordCounter {
         Map<String, Integer> sorted = new HashMap<>(numbersOfAnyUniqueWords);
         sorted.entrySet().stream()
                 .sorted(Map.Entry.<String, Integer>comparingByValue().reversed())
-                .forEach(v->mapAsString.append(v).append("\n"));
+                .forEach(v->mapAsString.append(v.getKey()).append(" ").append(v.getValue()).append("\n"));
         return mapAsString.toString();
     }
+
     public String sortByKey() {
         StringBuilder mapAsString = new StringBuilder();
         Map<String, Integer> sorted = new HashMap<>(numbersOfAnyUniqueWords);
         sorted.entrySet().stream()
                 .sorted(Map.Entry.comparingByKey())
-                .forEach(k->mapAsString.append(k).append("\n"));
+                .forEach(k->mapAsString.append(k.getKey()).append(" ").append(k.getValue()).append("\n"));
         return mapAsString.toString();
     }
 

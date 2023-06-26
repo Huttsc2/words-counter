@@ -34,8 +34,8 @@ public class FileWriterReader {
         Scanner sc = new Scanner(new File(toRead));
         return sc.useDelimiter("\\A").next();
     }
-    public void WriteToLog() throws FileNotFoundException {
-        WordCounter wordCounter = new WordCounter(fileToString());
+    public void WriteToLog() {
+        WordCounter wordCounter = new WordCounter(fileText);
         try (FileWriter log = new FileWriter(toWrite)) {
             log.write(wordCounter.displayToString());
         } catch (IOException ex) {
